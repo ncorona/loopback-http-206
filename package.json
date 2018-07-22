@@ -1,0 +1,34 @@
+{
+  "name": "loopback-http-206",
+  "description": "Loopback project for serving files using the HTTP 206 method",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node .",
+    "posttest": "npm run lint && nsp check"
+  },
+  "dependencies": {
+    "compression": "^1.0.3",
+    "cors": "^2.5.2",
+    "fs-extra": "^7.0.0",
+    "helmet": "^3.12.2",
+    "loopback": "^3.0.0",
+    "loopback-boot": "^2.6.5",
+    "loopback-component-explorer": "^4.0.0",
+    "mime-types": "^2.1.19",
+    "serve-favicon": "^2.0.1",
+    "strong-error-handler": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^2.13.1",
+    "eslint-config-loopback": "^4.0.0",
+    "nsp": "^3.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ncorona/loopback-http-206.git"
+  },
+  "author": "Nicola Corona",
+  "license": "MIT"
+}
