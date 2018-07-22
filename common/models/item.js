@@ -7,6 +7,41 @@ const path = require('path');
 
 module.exports = function(Item) {
   /**
+   * Return a list of all stored Items.
+   * 
+   * List all files inside the static directory, extract some metadata
+   * and for each one create a object with filename, size and mime type.
+   * The array of these objects is returned as result.
+   * 
+   * @param {string} filename Name of the requested file
+   * @params {function} next Callback function
+   *
+   * @returns {Object[]} Returns the array of retrieved Items.
+   */
+  Item.list = function(next) {
+    const folderpath = path.join(__dirname, '..', '..', 'client', 'assets');
+    fs.readdir(folderpath, function(err, files) {
+      // check for path errors
+      if (err) {
+        return next(err);
+      }
+      // create the item object for each file
+      const items = files.map(function(file) {
+        let item = {};
+        item.filename = file;
+        item.mime = mime.lookup(path.join(folderpath, file));
+        item.size = fs.statSync(path.join(folderpath, file)).size;
+        return item;
+      });
+      next(null, items);
+    });
+  };
+  Item.remoteMethod('list', {
+    http: {path: '/list', verb: 'get'},
+    returns: [{arg: 'body', type: 'array', root: true}],
+  });
+
+  /**
    * Return the requested bytes of a specific file.
    *
    * @param {string} filename Name of the requested file
