@@ -25,7 +25,7 @@ bash run.sh
 If you want to run the application using Docker, you have to run the following command on your bash interpreter:
 
 ```bash
-docker run -v $PWD/client/assets:/code/client/assets -p 0.0.0.0:3000:3000 ncorona/loopback-http-206
+docker run -it -v $PWD/client/assets:/code/client/assets -p 3000:3000 ncorona/loopback-http-206
 ```
 
 Both commands will install all dependencies, start the web server and print the log on your console. The web application will be reacheable at (http://localhost:3000).
